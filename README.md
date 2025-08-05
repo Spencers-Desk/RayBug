@@ -1,6 +1,6 @@
 # RayBug - Logging Tool
 
-**RayBug** is a standalone Python logging utility. that provides flexible, dual-output logging capabilities with customizable formatters and multiple logging levels. This tool has been incorporated into the main **RayTools** project but can also be used independently.
+**RayBug** is a standalone Python logging utility for use in RayStation. It enables customizable logging for debugging and user tracking. You simply initialize logging then make calls with _bug()_, using it in place of _print()_.
 
 **RayBug** is a byproduct of my main project, [RayTools](https://github.com/Spencers-Desk/RayTools), a toolbox designed to make working in RayStation much more efficient.
 
