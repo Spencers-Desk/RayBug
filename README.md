@@ -1,6 +1,8 @@
-# RayBug - Advanced Logging Tool
+# RayBug - Logging Tool
 
-**RayBug** is a standalone Python logging utility that provides flexible, dual-output logging capabilities with customizable formatters and multiple logging levels. This tool has been incorporated into the main **RayTools** project but can also be used independently.
+**RayBug** is a standalone Python logging utility. that provides flexible, dual-output logging capabilities with customizable formatters and multiple logging levels. This tool has been incorporated into the main **RayTools** project but can also be used independently.
+
+**RayBug** is a byproduct of my main project, [RayTools](https://github.com/Spencers-Desk/RayTools), a toolbox designed to make working in RayStation much more efficient.
 
 ## Features
 
@@ -26,7 +28,7 @@
    - File: `debug_YYYYMMDD_HHMMSS.log`
 
 2. **Tracking Logger** (`logger_track`):
-   - Handles user tracking messages
+   - Tracks user actions
    - Outputs only to file (no console output)
    - File: `track_YYYYMMDD_HHMMSS.log`
 
@@ -34,36 +36,10 @@
 
 RayBug uses a `config.py` file for all customizable settings. This allows you to personalize:
 
-### File Paths
-- **LOG_DIR_DEBUG**: Directory for debug log files
-- **LOG_DIR_USER_TRACKING**: Directory for tracking log files
-
-### Message Formatting
-- **TITLE_BORDER_CHAR**: Character used for title borders (default: "~")
-- **TITLE_BORDER_COUNT**: Number of border characters on each side (default: 5)
-- **MESSAGE_PREFIX**: Prefix for non-title messages (default: "-")
-
-### Console Output
-- **DEBUG_TO_CONSOLE**: Show debug messages in console (default: True)
-- **CONSOLE_LOG_LEVEL**: Minimum level for console output (default: "DEBUG")
-
-### Log File Settings
-- **LOG_TIMESTAMP_FORMAT**: Date format for log filenames (default: "%Y%m%d_%H%M%S")
-- **DEBUG_LOG_NAME**: Name prefix for debug logs (default: "debug")
-- **TRACKING_LOG_NAME**: Name prefix for tracking logs (default: "track")
-- **FILE_LOG_FORMAT**: Format string for log file entries
-- **FILE_LOG_LEVEL**: Minimum level for file output (default: "DEBUG")
-- **LOG_FILE_MODE**: File write mode - "w" (overwrite) or "a" (append)
-
-### Example config.py
-```python
-# Customize your logging experience
-TITLE_BORDER_CHAR = "*"      # Use asterisks instead of tildes
-TITLE_BORDER_COUNT = 3       # Shorter borders: *** Title ***
-MESSAGE_PREFIX = "→"         # Use arrow prefix: → Message text
-DEBUG_TO_CONSOLE = False     # Suppress debug console output
-LOG_TIMESTAMP_FORMAT = "%Y-%m-%d_%H-%M-%S"  # Different date format
-```
+- File Paths
+- Message Formatting
+- Console Output
+- Output File Settings
 
 ## Usage
 
@@ -93,17 +69,26 @@ bug("Script Initialization", "debug", title=True)
 # Output: "~~~~~ Script Initialization ~~~~~"
 ```
 
-### Direct Logger Access
+### F-String Support
+
+RayBug fully supports Python f-strings for dynamic message formatting:
 
 ```python
-from bug import logger_debug, logger_track
+# Dynamic variables in messages
+patient_id = "12345"
+roi_count = 15
+processing_time = 2.35
 
-# Direct logger usage
-logger_debug.info("Direct debug message")
-logger_track.info("Direct tracking message")
+bug(f"Loading patient {patient_id}")
+bug(f"Found {roi_count} ROIs in patient data", "debug")
+bug(f"Processing completed in {processing_time:.2f} seconds", "debug", title=True)
+bug(f"User {patient_id} accessed plan at {datetime.now()}", "track")
+
+# Complex formatting
+bug(f"Memory usage: {memory_used/1024/1024:.1f} MB / {memory_total/1024/1024:.1f} MB", "warning")
 ```
 
-## Log File Format
+## Example Log File Format
 
 ### Debug Log File
 ```
@@ -123,16 +108,10 @@ ERROR - File not found
 
 ## Installation
 
-1. Clone or download the `bug.py` file
-2. Create a `config.py` file with required variables
-3. Import and use in your Python scripts
-
-## Integration with RayTools
-
-This logging tool has been integrated into the larger **RayTools** project, providing consistent logging capabilities across all RayTools modules. When used within RayTools, the configuration is automatically handled by the main project settings.
+1. Clone or download the `bug.py` and `config.py` files
+2. Import and use in your Python scripts
 
 ## Dependencies
 
 - Python 3.6
 - Standard library modules: `logging`, `datetime`, `os`, `sys`
-- Custom `config.py` file
