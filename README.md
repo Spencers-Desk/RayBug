@@ -71,8 +71,6 @@ bug("Script Initialization", "debug", title=True)
 
 ### F-String Support
 
-RayBug fully supports Python f-strings for dynamic message formatting:
-
 ```python
 # Dynamic variables in messages
 patient_id = "12345"

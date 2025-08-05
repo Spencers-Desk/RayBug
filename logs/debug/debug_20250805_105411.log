@@ -1,0 +1,8 @@
+2025-08-05 10:54:11,929 - DEBUG - - Loading patient data from database
+2025-08-05 10:54:11,932 - DEBUG - ~~~~~ Medical Image Processing Script ~~~~~
+2025-08-05 10:54:11,934 - WARNING - - Memory usage is getting high
+2025-08-05 10:54:11,935 - ERROR - - Failed to load configuration file
+2025-08-05 10:54:11,939 - DEBUG - ~~~~~ Image Processing Phase ~~~~~
+2025-08-05 10:54:11,941 - DEBUG - - Applying noise reduction filters
+2025-08-05 10:54:11,943 - DEBUG - - Segmenting anatomical structures
+2025-08-05 10:54:11,946 - DEBUG - - Processing completed successfully
